@@ -17,6 +17,7 @@
 		0A57E9C819F5B09C00A5C76B /* SplitContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E9C719F5B09C00A5C76B /* SplitContainerViewController.swift */; };
 		0A57E9CA19F5B61100A5C76B /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E9C919F5B61100A5C76B /* RepositoryViewController.swift */; };
 		0A57E9CC19F5B8A200A5C76B /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E9CB19F5B8A200A5C76B /* GitHubService.swift */; };
+		0A6778AB19F6F352008708B2 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6778AA19F6F352008708B2 /* Repositories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		0A57E9C719F5B09C00A5C76B /* SplitContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitContainerViewController.swift; sourceTree = "<group>"; };
 		0A57E9C919F5B61100A5C76B /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 		0A57E9CB19F5B8A200A5C76B /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
+		0A6778AA19F6F352008708B2 /* Repositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		0A57E9C019F5AEE200A5C76B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A6778AA19F6F352008708B2 /* Repositories.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				0A57E9C819F5B09C00A5C76B /* SplitContainerViewController.swift in Sources */,
 				0A57E9CC19F5B8A200A5C76B /* GitHubService.swift in Sources */,
 				0A57E9CA19F5B61100A5C76B /* RepositoryViewController.swift in Sources */,
+				0A6778AB19F6F352008708B2 /* Repositories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +451,7 @@
 				0A57E9BC19F5AED100A5C76B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A57E9BD19F5AED100A5C76B /* Build configuration list for PBXNativeTarget "GitHubMobileTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +460,7 @@
 				0A57E9BF19F5AED100A5C76B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

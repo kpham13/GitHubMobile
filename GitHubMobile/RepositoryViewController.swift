@@ -13,16 +13,16 @@ class RepositoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myGithubSerive = GitHubService()
-        
-        myGithubSerive.dataTask { (errorDescription, json) -> (Void) in
-            if errorDescription != nil {
-                println("1: \(json)")
-            } else {
-                println("2: \(json)")
-            }
-
-        }
+//        let myGithubSerive = GitHubService()
+//        
+//        myGithubSerive.dataTask { (errorDescription, json) -> (Void) in
+//            if errorDescription != nil {
+//                println("1: \(json)")
+//            } else {
+//                println("2: \(json)")
+//            }
+//
+//        }
     }
 
     override func didReceiveMemoryWarning() {
