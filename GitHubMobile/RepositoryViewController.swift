@@ -9,24 +9,29 @@
 import UIKit
 
 class RepositoryViewController: UIViewController {
+    
+    var repos : [Repositories]?
+    let networkController = GitHubService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let myGithubSerive = GitHubService()
-//        
-//        myGithubSerive.dataTask { (errorDescription, json) -> (Void) in
-//            if errorDescription != nil {
-//                println("1: \(json)")
-//            } else {
-//                println("2: \(json)")
-//            }
-//
-//        }
+        self.networkController.dataTask { (errorDescription, repos) -> (Void) in
+            if errorDescription != nil {
+                // Alert the user that something went wrong here or log errors.
+                println("Bad")
+            } else {
+                self.repos = repos
+                println(self.repos!.count)
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: -
     
 }

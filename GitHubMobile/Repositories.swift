@@ -10,53 +10,41 @@ import UIKit
 
 class Repositories {
     
-    var repos : NSDictionary
     var repoID : Int
     var name : String
     var full_name : String
     
     init (repoInfo: NSDictionary) {
-        let itemInfo = repoInfo["items"] as NSDictionary
+        self.repoID = repoInfo["id"] as Int
+        self.name = repoInfo["name"] as String
+        self.full_name = repoInfo["full_name"] as String
+    }
+    
+    class func parseJSONDataIntoRepos(rawJSONData: NSData) -> [Repositories]? {
+        var error : NSError?
         
-        self.repos = repoInfo["items"] as NSDictionary
-        self.repoID = itemInfo["id"] as Int
-        self.name = itemInfo["name"] as String
-        self.full_name = itemInfo["full_name"] as String
-    }
-    
-//    class func parseJSONDataIntoItems(rawJSONData: NSData) -> [Repositories]? {
-//        var error : NSError?
-//        
-//        if let JSONArray = NSJSONSerialization.JSONObjectWithData(rawJSONData, options: nil, error: &error) as? NSArray {
-//            
-//        }
-//    }
-    
-    
-    
-    
-}
-/*
-// Factory Method - very common to parse JSON in models rather than ViewControllers because reusability in different controllers
-class func parseJSONDataIntoTweets(rawJSONData : NSData) -> [Tweet]? {
-    var error : NSError?
-    // Using Objective-C NSArray and/or NSDictionary rather than Swift Array/Dictionary
-    if let JSONArray = NSJSONSerialization.JSONObjectWithData(rawJSONData, options: nil, error: &error) as? NSArray {
-        var tweets = [Tweet]() // Shorthand to initialize array
-        // println(JSONArray[0]) // Actual Twitter JSON
-        // JSON file gives a dictionary for each tweet, loop through each JSON dictionary to create tweets
-        for JSONDictionary in JSONArray {
-            if let tweetDictionary = JSONDictionary as? NSDictionary {
-                var newTweet = Tweet(tweetInfo : tweetDictionary)
-                tweets.append(newTweet)
+        // If NSJSONSerialization of rawJSONData is a NSDictionary, set to JSONDictionary
+        if let JSONDictionary = NSJSONSerialization.JSONObjectWithData(rawJSONData, options: nil, error: &error) as? NSDictionary {
+            var repos = [Repositories]()
+            
+            // If JSONDictionary["items"] is a NSArray, set to JSONArray
+            if let JSONArray = JSONDictionary["items"] as? NSArray {
+                for object in JSONArray { // For objects in JSONArray...
+                    if let repo = object as? NSDictionary { // if the objects are NSDictionaries, set to repo...
+                        var newRepo = Repositories(repoInfo: repo) // create newRepos from repo objects...
+                        repos.append(newRepo) // append newRepo objects to array of Repositories objects
+                    }
+                }
             }
+            
+            return repos
+            
         }
-        return tweets
+        
+        return nil
     }
-    return nil
-}
 
-===============================
+}
 
 /*
 "items": [
@@ -92,4 +80,5 @@ class func parseJSONDataIntoTweets(rawJSONData : NSData) -> [Tweet]? {
 "default_branch": "master",
 "score": 10.309712
 }
-]*/*/
+]
+*/
