@@ -10,14 +10,18 @@ import UIKit
 
 class Repositories {
     
+    var fullName : String
+    var description : String
+    var language : String
     var repoID : Int
     var name : String
-    var full_name : String
     
     init (repoInfo: NSDictionary) {
+        self.fullName = repoInfo["full_name"] as String
+        self.description = repoInfo["description"] as String
+        self.language = repoInfo["language"] as String
         self.repoID = repoInfo["id"] as Int
         self.name = repoInfo["name"] as String
-        self.full_name = repoInfo["full_name"] as String
     }
     
     class func parseJSONDataIntoRepos(rawJSONData: NSData) -> [Repositories]? {

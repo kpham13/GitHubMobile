@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RepositoryViewController: UIViewController {
+class RepositoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var repos : [Repositories]?
     let networkController = GitHubService()
@@ -32,6 +32,19 @@ class RepositoryViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: -
+    // MARK: - Table View Data Source
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("CELL", forIndexPath: indexPath) as UITableViewCell
+        
+        let repo = self.repos?[indexPath.row]
+        cell.textLabel.text = repo?.description
+        
+        return cell
+    }
     
 }

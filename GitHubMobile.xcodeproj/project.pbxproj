@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1D032A19F70B5500DBFC93 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D032919F70B5500DBFC93 /* MasterTableViewController.swift */; };
+		0A1D032E19F7189900DBFC93 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D032D19F7189900DBFC93 /* Tokens.swift */; };
 		0A57E99E19F5AED000A5C76B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E99D19F5AED000A5C76B /* AppDelegate.swift */; };
 		0A57E9A119F5AED100A5C76B /* GitHubMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E99F19F5AED100A5C76B /* GitHubMobile.xcdatamodeld */; };
 		0A57E9A319F5AED100A5C76B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E9A219F5AED100A5C76B /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A1D032919F70B5500DBFC93 /* MasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
+		0A1D032D19F7189900DBFC93 /* Tokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		0A57E99819F5AED000A5C76B /* GitHubMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A57E99C19F5AED000A5C76B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A57E99D19F5AED000A5C76B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				0A57E9C219F5AEF100A5C76B /* Controller */,
 				0A57E9A719F5AED100A5C76B /* Images.xcassets */,
 				0A57E99F19F5AED100A5C76B /* GitHubMobile.xcdatamodeld */,
+				0A1D032D19F7189900DBFC93 /* Tokens.swift */,
 				0A57E9A219F5AED100A5C76B /* ViewController.swift */,
 				0A57E99B19F5AED000A5C76B /* Supporting Files */,
 			);
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				0A57E9CB19F5B8A200A5C76B /* GitHubService.swift */,
+				0A1D032919F70B5500DBFC93 /* MasterTableViewController.swift */,
 				0A57E9C919F5B61100A5C76B /* RepositoryViewController.swift */,
 				0A57E9C719F5B09C00A5C76B /* SplitContainerViewController.swift */,
 			);
@@ -256,8 +262,10 @@
 				0A57E99E19F5AED000A5C76B /* AppDelegate.swift in Sources */,
 				0A57E9C819F5B09C00A5C76B /* SplitContainerViewController.swift in Sources */,
 				0A57E9CC19F5B8A200A5C76B /* GitHubService.swift in Sources */,
+				0A1D032A19F70B5500DBFC93 /* MasterTableViewController.swift in Sources */,
 				0A57E9CA19F5B61100A5C76B /* RepositoryViewController.swift in Sources */,
 				0A6778AB19F6F352008708B2 /* Repositories.swift in Sources */,
+				0A1D032E19F7189900DBFC93 /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +391,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GitHubMobile/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -393,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GitHubMobile/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
