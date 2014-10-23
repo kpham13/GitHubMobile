@@ -27,13 +27,13 @@ class GitHubService {
     let gitHubPOSTURL = "https://github.com/login/oauth/access_token"
     
     init() {
-        // On initialization, look for OAuthToken key in user defaults
-        // If found, create an NSURLSessionConfiguration with the OAuth token
+        // 7. If OAuth token exists in user defaults, create a NSURLSessionConfiguration with token
         if let accessToken = NSUserDefaults.standardUserDefaults().objectForKey("OAuth") as? NSString {
             self.setupConfigurationWithAccessToken(accessToken)
         }
-        
     }
+    
+    // MARK: - Singleton
     
 //    class var sharedInstance: GitHubService {
 //        struct Static {
@@ -45,6 +45,8 @@ class GitHubService {
 //        }
 //        return Static.instance!
 //    }
+    
+    // MARK: - OAuth
     
     // Determines if OAuth token key exists in user defaults.
     func isAuthenticated() -> Bool {
@@ -119,6 +121,8 @@ class GitHubService {
         
         dataTask.resume()
     }
+    
+    // MARK: - Authenticated API requests
     
     // GET request (default)
     func dataTask(completionHandler: (errorDescription: String?, repos: [Repositories]?) -> (Void)) {
