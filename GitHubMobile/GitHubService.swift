@@ -29,9 +29,10 @@ class GitHubService {
     init() {
         // On initialization, look for OAuthToken key in user defaults
         // If found, create an NSURLSessionConfiguration with the OAuth token
-//        if let token = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSString {
-//            self.setupConfigurationWithAccessToken(token)
-//        }
+        if let accessToken = NSUserDefaults.standardUserDefaults().objectForKey("OAuth") as? NSString {
+            self.setupConfigurationWithAccessToken(accessToken)
+        }
+        
     }
     
 //    class var sharedInstance: GitHubService {
@@ -44,6 +45,15 @@ class GitHubService {
 //        }
 //        return Static.instance!
 //    }
+    
+    // Determines if OAuth token key exists in user defaults.
+    func isAuthenticated() -> Bool {
+        if let token = NSUserDefaults.standardUserDefaults().objectForKey("OAuth") as? NSString {
+            return true
+        }
+        
+        return false
+    }
     
     func requestOAuthAccess(id: String, secret: String) {
         self.clientID = id
@@ -82,19 +92,18 @@ class GitHubService {
                     switch httpResponse.statusCode {
                     case 200...299:
                         if let tokenResponse = NSString(data: data, encoding: NSASCIIStringEncoding) {
-                            println(tokenResponse)
+                            //println(tokenResponse)
                             if let accessToken = self.accessTokenFromResponseString(tokenResponse) {
-                                println(accessToken)
+                                //println(accessToken)
                                 
-                                //
-                                self.authenticationConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-                                self.authenticationConfig?.HTTPAdditionalHeaders = ["Authorization" : "token \(accessToken)"]
+                                // Adding access_token to session configuation header
+                                self.setupConfigurationWithAccessToken(accessToken)
                                 
-                                //
+                                // Saving OAuth token into user default.
                                 NSUserDefaults.standardUserDefaults().setObject("\(accessToken)", forKey: "OAuth")
                                 NSUserDefaults.standardUserDefaults().synchronize()
-                                println(accessToken)
-                                println(NSUserDefaults.standardUserDefaults().valueForKey("OAuth"))
+                                //println(accessToken)
+                                //println(NSUserDefaults.standardUserDefaults().valueForKey("OAuth"))
                             }
                         }
                     case 400...499:
@@ -110,36 +119,6 @@ class GitHubService {
         
         dataTask.resume()
     }
-    
-    // Helper method for return access_token value from query string. (Source: Andy)
-    func accessTokenFromResponseString(string: String) -> String? {
-        let parameterPairs = string.componentsSeparatedByString("&")
-        
-        for pair in parameterPairs {
-            let combo = pair.componentsSeparatedByString("=")
-            if let key = combo.first {
-                if key == "access_token" {
-                    return combo.last
-                }
-            }
-        }
-        
-        return nil
-    }
-    
-/*
-    // Save the OAuth token into user default. We will use the token
-    // again on subsequent app launch, so our user won't need to grant
-    // permission again, and 'reauthenticate'.
-    let key = DefaultsKeys.OAuthToken.rawValue
-    NSUserDefaults.standardUserDefaults().setObject(token!, forKey: key)
-    NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    })
-    return true
-    }
-    return false
-    */
     
     // GET request (default)
     func dataTask(completionHandler: (errorDescription: String?, repos: [Repositories]?) -> (Void)) {
@@ -158,7 +137,7 @@ class GitHubService {
                         println(header)
                     }
                     
-                    // println(json)
+                    //println(json)
                     let repos = Repositories.parseJSONDataIntoRepos(data)
                     println("Good: \(responseString)")
                     completionHandler(errorDescription: nil, repos: repos)
@@ -176,6 +155,29 @@ class GitHubService {
         dataTask.resume()
     }
     
+    // MARK: - Helper methods
+    
+    // Helper method for returning access_token value from query string. (Source: Andy)
+    func accessTokenFromResponseString(string: String) -> String? {
+        let parameterPairs = string.componentsSeparatedByString("&")
+        
+        for pair in parameterPairs {
+            let combo = pair.componentsSeparatedByString("=")
+            if let key = combo.first {
+                if key == "access_token" {
+                    return combo.last
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    // Setup default HTTP header value with OAuth token.
+    func setupConfigurationWithAccessToken(token: String) -> Void {
+        self.authenticationConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        self.authenticationConfig?.HTTPAdditionalHeaders = ["Authorization" : "token \(token)"]
+    }
     
 //    func downloadTask() {
 //        let downloadRequestURL = NSURL(string: gitHubURL)
@@ -197,27 +199,4 @@ class GitHubService {
 //        
 //        downloadTask.re
 //    }
-
-//    
-//    // Makes GET request, uses temporary file behind the scenes.
-//    func downloadTask() {
-//        let request = NSURLRequest(URL: url2!)
-//        let session = NSURLSession.sharedSession()
-//        let downloadTask = session.downloadTaskWithRequest(request, completionHandler: { (url, response, error) -> Void in
-//            if let httpResponse = response as? NSHTTPURLResponse {
-//                switch httpResponse.statusCode {
-//                case 200...204:
-//                    for header in httpResponse.allHeaderFields {
-//                        println(header)
-//                    }
-//                default:
-//                    println("badResponse: \(httpResponse.statusCode)")
-//                }
-//            }
-//        })
-//        
-//        downloadTask.resume()
-//    }
-//    
-//}
 }

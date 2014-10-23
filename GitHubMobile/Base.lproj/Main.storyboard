@@ -63,13 +63,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0He-eK-SJn" id="cc8-51-kbK">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fly-Je-99g">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fly-Je-99g">
                                                     <rect key="frame" x="8" y="11" width="50" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fly-Je-99g" firstAttribute="top" secondItem="cc8-51-kbK" secondAttribute="topMargin" constant="3" id="bnO-kU-4ti"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fly-Je-99g" secondAttribute="bottom" constant="3" id="eUG-eg-rRS"/>
+                                                <constraint firstItem="fly-Je-99g" firstAttribute="leading" secondItem="cc8-51-kbK" secondAttribute="leadingMargin" id="f4n-Mq-I8F"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="lhj-DB-CRf" kind="show" id="skD-ii-Mk7"/>
@@ -80,13 +85,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="upp-UW-nsu" id="svI-Ib-t4O">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Users" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shT-lJ-The">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shT-lJ-The">
                                                     <rect key="frame" x="8" y="11" width="45" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="shT-lJ-The" firstAttribute="top" secondItem="svI-Ib-t4O" secondAttribute="topMargin" constant="3" id="LZQ-XS-Ffa"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="shT-lJ-The" secondAttribute="bottom" constant="3" id="gZ2-Qf-XCz"/>
+                                                <constraint firstItem="shT-lJ-The" firstAttribute="leading" secondItem="svI-Ib-t4O" secondAttribute="leadingMargin" id="rfC-XV-aQN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="tWI-YU-HiS" kind="show" id="MMq-VZ-6MU"/>
@@ -97,13 +107,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U7v-SP-gqc" id="glJ-ub-K2q">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irO-qA-eVM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irO-qA-eVM">
                                                     <rect key="frame" x="8" y="11" width="49" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="irO-qA-eVM" firstAttribute="top" secondItem="glJ-ub-K2q" secondAttribute="topMargin" constant="3" id="L8w-YG-4NW"/>
+                                                <constraint firstItem="irO-qA-eVM" firstAttribute="leading" secondItem="glJ-ub-K2q" secondAttribute="leadingMargin" id="NhE-T5-gVI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="irO-qA-eVM" secondAttribute="bottom" constant="3" id="nAZ-In-Yml"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="bT9-EJ-e8J" kind="show" id="Ykq-4L-lAS"/>

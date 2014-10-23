@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHubMobile/GitHubService.swift"
-            timestampString = "435713904.608426"
+            timestampString = "435776811.252127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "handleOAuthURL(_:)"
             landmarkType = "5">
          </BreakpointContent>

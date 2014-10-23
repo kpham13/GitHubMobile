@@ -18,9 +18,7 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupVC()
-        
-        //var appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        
+                
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,17 +27,18 @@ class MasterTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        // super.viewDidAppear()
+        super.viewDidAppear(true)
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
         
-        //if GitHubAPIClient.sharedInstance.isAuthenticated() == false {
-        //let url = GitHubService.sharedInstance.requestOAuthAccess(self.clientID!, secret: self.clientSecret!)
-            //let url: () = GitHubService.sharedInstance.requestOAuthAccess(self.clientID!, secret: self.clientSecret!)
-            //UIApplication.sharedApplication().openURL(url)
-        //}
-        self.networkController.requestOAuthAccess(self.clientID!, secret: self.clientSecret!)
+        // 6. Authentication check
+        if self.networkController.isAuthenticated() == false {
+            println("Not authenticated...")
+            self.networkController.requestOAuthAccess(self.clientID!, secret: self.clientSecret!)
+        } else {
+            println("Already authenticated.")
+        }
     }
     
     override func didReceiveMemoryWarning() {
