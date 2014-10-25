@@ -46,7 +46,7 @@ class MasterTableViewController: UITableViewController {
     }
     
     /*
-    // MARK: - Table view data source
+    // MARK: - Table View Data Source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.

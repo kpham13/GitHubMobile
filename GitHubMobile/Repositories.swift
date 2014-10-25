@@ -11,15 +11,15 @@ import UIKit
 class Repositories {
     
     var fullName : String
-    var description : String
-    var language : String
+    var description : String?
+    var language : String?
     var repoID : Int
     var name : String
     
     init (repoInfo: NSDictionary) {
         self.fullName = repoInfo["full_name"] as String
-        self.description = repoInfo["description"] as String
-        self.language = repoInfo["language"] as String
+        self.description = repoInfo["description"] as? String
+        self.language = repoInfo["language"] as? String
         self.repoID = repoInfo["id"] as Int
         self.name = repoInfo["name"] as String
     }

@@ -8,24 +8,24 @@
 
 import UIKit
 
-class RepositoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RepositoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     var repos : [Repositories]?
-    let networkController = GitHubService()
-
+    var networkController : GitHubService!
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.networkController.dataTask { (errorDescription, repos) -> (Void) in
-            if errorDescription != nil {
-                // Alert the user that something went wrong here or log errors.
-                println("Bad")
-            } else {
-                self.repos = repos
-                println(self.repos!.count)
-            }
-        }
         
+        // 8. Registering Table View Cell Nib file
+        self.tableView.registerNib(UINib(nibName: "RepoTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "REPO_CELL")
+        
+        // 9. Dynamic Cell Height
+        self.tableView.estimatedRowHeight = 100.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,16 +35,50 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Table View Data Source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if self.repos == nil {
+            return 0
+        } else {
+            return self.repos!.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL", forIndexPath: indexPath) as RepoTableViewCell
         
         let repo = self.repos?[indexPath.row]
-        cell.textLabel.text = repo?.description
+        
+        cell.fullNameLabel.text = repo?.fullName
+        cell.descriptionLabel.text = repo?.description
+        cell.languageLabel.text = repo?.language
         
         return cell
+    }
+    
+    // MARK: - Table View Delegate
+    
+    // MARK: - Search Bar Delegate
+    // 11
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return text.validate()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        var searchText = searchBar.text
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelegate.networkController
+        
+        self.networkController.repoSearch(searchText, completionHandler: { (errorDescription, repos) -> (Void) in
+            if errorDescription != nil {
+                // Alert the user that something went wrong here or log errors.
+                println("Bad")
+            } else {
+                self.repos = repos
+                println(self.repos!.count)
+                self.tableView.reloadData()
+            }
+        })
+
     }
     
 }

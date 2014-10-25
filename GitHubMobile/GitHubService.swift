@@ -17,9 +17,6 @@ class GitHubService {
     var clientSecretParameter : String?
     var authenticationConfig : NSURLSessionConfiguration?
 
-    let gitHubURL = "http://10.97.110.74:3000" // "http://10.97.110.74:3000?q=tetris"
-    var searchParameter = "?q="
-    var searchString = "tetris"
     let scope = "scope=user,repo"
 
     let gitHubOAuthURL = "https://github.com/login/oauth/authorize?"
@@ -122,32 +119,44 @@ class GitHubService {
         dataTask.resume()
     }
     
-    // MARK: - Authenticated API requests
+    // MARK: - Authenticated API Requests
+    // 10
     
-    // GET request (default)
-    func dataTask(completionHandler: (errorDescription: String?, repos: [Repositories]?) -> (Void)) {
-        let dataTaskURL = NSURL(string: gitHubURL + searchParameter + searchString)
-        let session = NSURLSession.sharedSession()
-        let dataTask = session.dataTaskWithURL(dataTaskURL!, completionHandler: { (data, response, error) -> Void in
+    func repoSearch(searchText: String, completionHandler: (errorDescription: String?, repos: [Repositories]?) -> (Void)) {
+        // Checks to see if authenticated
+        if self.authenticationConfig == nil {
+            return()
+        }
+        
+        let searchString = searchText
+        let searchDirectory = "/search/repositories?q="
+        let searchURL = "https://api.github.com" + searchDirectory + searchString
+        let request = NSURLRequest(URL: NSURL(string: searchURL)!)
+        
+        // Create session using authentication config
+        let configuration = self.authenticationConfig!
+        let session = NSURLSession(configuration: configuration)
+        
+        // Create an NSURL Session Data Task
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if let httpResponse = response as? NSHTTPURLResponse {
                 var error : NSError?
                 
                 let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
                 let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-
+                
                 switch httpResponse.statusCode {
                 case 200...299:
-                    for header in httpResponse.allHeaderFields {
-                        println(header)
-                    }
-                    
-                    //println(json)
-                    let repos = Repositories.parseJSONDataIntoRepos(data)
-                    println("Good: \(responseString)")
-                    completionHandler(errorDescription: nil, repos: repos)
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        var repos = [Repositories]()
+                        
+                        let repoObjects = Repositories.parseJSONDataIntoRepos(data)
+                        repos = repoObjects!
+                        completionHandler(errorDescription: nil, repos: repos)
+                    })
                 case 400...499:
                     completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", repos: nil)
-                case 500...509:
+                case 500...599:
                     completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", repos: nil)
                 default:
                     completionHandler(errorDescription: "Bad Response: \(responseString)", repos: nil)
@@ -159,7 +168,53 @@ class GitHubService {
         dataTask.resume()
     }
     
-    // MARK: - Helper methods
+    func userSearch(searchText: String, completionHandler: (errorDescription: String?, users: [Users]?) -> (Void)) {
+        // Checks to see if authenticated
+        if self.authenticationConfig == nil {
+            return()
+        }
+        
+        let searchString = searchText
+        let searchDirectory = "/search/users?q="
+        let searchURL = "https://api.github.com" + searchDirectory + searchString
+        let request = NSURLRequest(URL: NSURL(string: searchURL)!)
+        
+        // Create session using authentication config
+        let configuration = self.authenticationConfig!
+        let session = NSURLSession(configuration: configuration)
+        
+        // Create an NSURL Session Data Task
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if let httpResponse = response as? NSHTTPURLResponse {
+                var error : NSError?
+                
+                let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+                let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                
+                switch httpResponse.statusCode {
+                case 200...299:
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        var users = [Users]()
+                        
+                        let userObjects = Users.parseJSONDataIntoUsers(data)
+                        users = userObjects!
+                        completionHandler(errorDescription: nil, users: users)
+                    })
+                case 400...499:
+                    completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", users: nil)
+                case 500...599:
+                    completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", users: nil)
+                default:
+                    completionHandler(errorDescription: "Bad Response: \(responseString)", users: nil)
+                }
+            }
+        })
+        
+        // Run the task
+        dataTask.resume()
+    }
+    
+    // MARK: - Helper Methods
     
     // Helper method for returning access_token value from query string. (Source: Andy)
     func accessTokenFromResponseString(string: String) -> String? {
@@ -183,24 +238,20 @@ class GitHubService {
         self.authenticationConfig?.HTTPAdditionalHeaders = ["Authorization" : "token \(token)"]
     }
     
-//    func downloadTask() {
-//        let downloadRequestURL = NSURL(string: gitHubURL)
-//        let session = NSURLSession.sharedSession()
-//        let downloadTask = session.downloadTaskWithRequest(downloadRequestURL!, completionHandler: { (url, response, error) -> Void in
-//            if let httpResponse = response as? NSHTTPURLResponse {
-//                var error : NSError?
-//                
-//                switch httpResponse.statusCode {
-//                case 200...204:
-//                    for header in httpResponse.allHeaderFields {
-//                        println(header)
-//                    }
-//                default:
-//                    println("badResponse")
-//                }
-//            }
-//        })
-//        
-//        downloadTask.re
-//    }
+    // NSOperations - Asynchronous download of user images
+    func downloadUserImage(user: Users, completionHandler : (image : UIImage) -> (Void)) {
+        var downloadOperation = NSBlockOperation { () -> Void in
+            let avatarURL = NSURL(string: user.avatarURL)
+            let avatarData = NSData(contentsOfURL: avatarURL!) // Network Call
+            let avatarImage = UIImage(data: avatarData!) // Most intensive, converting data to image
+            //user.avatarImage = avatarImage
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(image: avatarImage!) // completionHandler is the image, which will be sent to TableView (i.e cell.avatarImageView.image = avatarImage)
+                // self.imageActivity.stopAnimating()
+            })
+        }
+        // downloadOperation.qualityOfService = NSQualityOfService.Background
+        NSOperationQueue().addOperation(downloadOperation)
+    }
+ 
 }
