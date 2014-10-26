@@ -18,18 +18,12 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupVC()
         
-        // Registering Collection View Cell Nib file
-        self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "USER_CELL")
-        
-        // Setting the responsibility of the navgation controller delegate
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.navigationController?.delegate = appDelegate
-//        let navigationDelegate = MasterTableViewController()
-//        self.navigationController?.delegate = navigationDelegate
+        self.networkController = appDelegate.networkController
     }
-    
-    //collectionview cell heights: iPhone 5: 78x78, iPhone6:
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,30 +42,20 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell : UserCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("USER_CELL", forIndexPath: indexPath) as UserCollectionViewCell
         
-        
-        if self.users == nil {
-            println("No users")
-        } else {
-            println("There are users.")
+        var currentTag = cell.tag + 1
+        cell.tag = currentTag
             
-            var currentTag = cell.tag + 1
-            cell.tag = currentTag
+        let user = self.users?[indexPath.row]
+        cell.imageView.backgroundColor = UIColor.whiteColor()
+        cell.loginLabel.text = user!.login
             
-            let user = self.users?[indexPath.row]
-            cell.imageView.backgroundColor = UIColor.blueColor()
-            cell.loginLabel.text = user!.login
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            self.networkController = appDelegate.networkController
-            
-//            // Download user image
-//            self.networkController.downloadUserImage(user!, completionHandler: { (image) -> (Void) in
-//                let cellForImage = self.collectionView.cellForItemAtIndexPath(indexPath) as UserCollectionViewCell?
-//                if cell.tag == currentTag {
-//                    cellForImage?.imageView.image = image
-//                }
-//                })
-        }
+        // Download user image
+        self.networkController.downloadUserImage(user!, completionHandler: { (image) -> (Void) in
+            let cellForImage = self.collectionView.cellForItemAtIndexPath(indexPath) as UserCollectionViewCell?
+            if cell.tag == currentTag {
+                cellForImage?.imageView.image = image
+            }
+        })
         
         return cell
     }
@@ -88,23 +72,11 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // Grab the attributes of tapped cell
-        let attributes = collectionView.layoutAttributesForItemAtIndexPath(indexPath)
-        
-        // Grab the onscreen rectangle of the tapped cell
-        //let origin = self.view.convertRect(attributes!.frame, fromView: collectionView)
-        
-        // Save our starting location as the tapped upon cells frame
-        //self.origin = origin
-        
-        // Find tapped image, initialize next view controller
         let user = self.users?[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewControllerWithIdentifier("USER_DETAIL_VIEW") as UserDetailViewController
         
-        //viewControlller.image = image
-        //viewController.reverseOrigin = self.origin!
-        
+        viewController.selectedUser = user?
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -119,17 +91,25 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
         
-//        self.networkController.userSearch(searchText, completionHandler: { (errorDescription, users) -> (Void) in
-//            if errorDescription != nil {
-//                // Alert the user that something went wrong here or log errors.
-//                println("Bad")
-//            } else {
-//                self.users = users
-//                println(self.users!.count)
-//                self.collectionView.reloadData()
-//            }
-//        })
+        self.networkController.userSearch(searchText, completionHandler: { (errorDescription, users) -> (Void) in
+            if errorDescription != nil {
+                println("Bad")
+            } else {
+                self.users = users
+                println(self.users!.count)
+                self.collectionView.reloadData()
+            }
+        })
         
     }
+    
+    // MARK: - viewDidLoad
+    
+    func setupVC() {
+        // Registering Collection View Cell Nib file
+        self.collectionView.registerNib(UINib(nibName: "UserCollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "USER_CELL")
+    }
+    
+    // Adjust collection view cell heights based on device: iPhone 5: 78x78, iPhone6:
     
 }

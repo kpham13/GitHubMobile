@@ -45,7 +45,7 @@ class HideUserAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             
             containerView.addSubview(snapshot)
             containerView.insertSubview(destinationViewController.view, belowSubview: originViewController.view)
-            originViewController.imageView.removeFromSuperview()
+            //originViewController.imageView.removeFromSuperview()
             
             UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: nil, animations: { () -> Void in
                 UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.3, animations: { () -> Void in

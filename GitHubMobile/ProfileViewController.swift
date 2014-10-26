@@ -10,35 +10,52 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    var profileUser : Users?
     var networkController : GitHubService!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var companyTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var repoCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
         
-//        self.networkController.fetchUserProfile( { (errorDescription, user) -> (Void) in
-//            println(user?.login)
-//        })
+        self.networkController.fetchUserProfile( { (errorDescription, user) -> (Void) in
+            if errorDescription != nil {
+                println("Bad")
+            } else {
+                self.profileUser = user
+                println(self.profileUser!.fullName!)
+                println(self.profileUser!.login)
+                println(self.profileUser!.company!)
+                println(self.profileUser!.location!)
+                println(self.profileUser!.publicRepos!)
+                println(self.profileUser!.email!)
+                
+                self.nameTextField.text = self.profileUser!.fullName!
+                self.emailTextField.text = self.profileUser!.email!
+                self.companyTextField.text = self.profileUser!.company!
+                self.locationTextField.text = self.profileUser!.location!
+                var repoCount = self.profileUser!.publicRepos!
+                self.repoCountLabel.text = String(repoCount)
+                
+                self.networkController.downloadUserImage(self.profileUser!, completionHandler: { (image) -> (Void) in
+                    self.imageView.image = image
+                })
+
+
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

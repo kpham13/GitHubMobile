@@ -168,171 +168,171 @@ class GitHubService {
         // Run the task
         dataTask.resume()
     }
-//
-//    func userSearch(searchText: String, completionHandler: (errorDescription: String?, users: [Users]?) -> (Void)) {
-//        // Checks to see if authenticated
-//        if self.authenticationConfig == nil {
-//            return()
-//        }
-//        
-//        let searchString = searchText
-//        let searchDirectory = "/search/users?q="
-//        let searchURL = self.gitHubAPI + searchDirectory + searchString
-//        let request = NSURLRequest(URL: NSURL(string: searchURL)!)
-//        
-//        // Create session using authentication config
-//        let configuration = self.authenticationConfig!
-//        let session = NSURLSession(configuration: configuration)
-//        
-//        // Create an NSURL Session Data Task
-//        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-//            if error != nil {
-//                println("Error!")
-//            } else {
-//                if let httpResponse = response as? NSHTTPURLResponse {
-//                    var error : NSError?
-//                    
-//                    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
-//                    let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//                    
-//                    switch httpResponse.statusCode {
-//                    case 200...299:
-//                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                            var users = [Users]()
-//                            
-//                            let userObjects = Users.parseJSONDataIntoUsers(data)
-//                            users = userObjects!
-//                            completionHandler(errorDescription: nil, users: users)
-//                        })
-//                    case 400...499:
-//                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", users: nil)
-//                    case 500...599:
-//                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", users: nil)
-//                    default:
-//                        completionHandler(errorDescription: "Bad Response: \(responseString)", users: nil)
-//                    }
-//                }
-//            }
-//        })
-//        
-//        // Run the task
-//        dataTask.resume()
-//    }
-//    
-//    func fetchUserProfile(completionHandler: (errorDescription: String?, user: Users?) -> (Void)) {
-//        // Checks to see if authenticated
-//        if self.authenticationConfig == nil {
-//            return()
-//        }
-//        
-//        let searchDirectory = "/user"
-//        let searchURL = self.gitHubAPI + searchDirectory
-//        let request = NSURLRequest(URL: NSURL(string: searchURL)!)
-//        
-//        // Create session using authentication config
-//        let configuration = self.authenticationConfig!
-//        let session = NSURLSession(configuration: configuration)
-//        
-//        // Create an NSURL Session Data Task
-//        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-//            if error != nil {
-//                println("Error!")
-//            } else {
-//                if let httpResponse = response as? NSHTTPURLResponse {
-//                    var error : NSError?
-//                    
-//                    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
-//                    let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//                    
-//                    switch httpResponse.statusCode {
-//                    case 200...299:
-//                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                            var user : Users
-//                            
-//                            let userObject = Users.parseJSONDataIntoAuthenticatedUser(data)
-//                            user = userObject!
-//                            completionHandler(errorDescription: nil, user: user)
-//                        })
-//                    case 400...499:
-//                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", user: nil)
-//                    case 500...599:
-//                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", user: nil)
-//                    default:
-//                        completionHandler(errorDescription: "Bad Response: \(responseString)", user: nil)
-//                    }
-//                }
-//            }
-//        })
-//        
-//        // Run the task
-//        dataTask.resume()
-//    }
-//    
-//    func updateUserProfile(completionHandler: (errorDescription: String?, user: Users?) -> (Void)) {
-//        // Checks to see if authenticated
-//        if self.authenticationConfig == nil {
-//            return()
-//        }
-//        
-//        let searchDirectory = "/user"
-//        let searchURL = "https://api.github.com" + searchDirectory
-//        var request = NSMutableURLRequest(URL: NSURL(string: searchURL)!)
-//        request.HTTPMethod = "PATCH"
-//        
-//        /*
-//        https://developer.github.com/v3/users/
-//            {
-//                "name": "monalisa octocat",
-//                "email": "octocat@github.com",
-//                "blog": "https://github.com/blog",
-//                "company": "GitHub",
-//                "location": "San Francisco",
-//                "hireable": true,
-//                "bio": "There once..."
-//            }
-//        */
-//        
-//        // Create session using authentication config
-//        let configuration = self.authenticationConfig!
-//        let session = NSURLSession(configuration: configuration)
-//        
-//        // Create an NSURL Session Data Task
-//        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-//            if error != nil {
-//                println("Error!")
-//            } else {
-//                if let httpResponse = response as? NSHTTPURLResponse {
-//                    var error : NSError?
-//                    
-//                    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
-//                    let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-//                    
-//                    switch httpResponse.statusCode {
-//                    case 200...299:
-//                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                            var user : Users
-//                            
-//                            let userObject = Users.parseJSONDataIntoAuthenticatedUser(data)
-//                            user = userObject!
-//                            completionHandler(errorDescription: nil, user: user)
-//                        })
-//                    case 400...499:
-//                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", user: nil)
-//                    case 500...599:
-//                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", user: nil)
-//                    default:
-//                        completionHandler(errorDescription: "Bad Response: \(responseString)", user: nil)
-//                    }
-//                }
-//            }
-//        })
-//        
-//        // Run the task
-//        dataTask.resume()
-//    }
-//    
-//    // Create a repo: https://developer.github.com/v3/repos/#create
-//    
+
+    func userSearch(searchText: String, completionHandler: (errorDescription: String?, users: [Users]?) -> (Void)) {
+        // Checks to see if authenticated
+        if self.authenticationConfig == nil {
+            return()
+        }
+        
+        let searchString = searchText
+        let searchDirectory = "/search/users?q="
+        let searchURL = self.gitHubAPI + searchDirectory + searchString
+        let request = NSURLRequest(URL: NSURL(string: searchURL)!)
+        
+        // Create session using authentication config
+        let configuration = self.authenticationConfig!
+        let session = NSURLSession(configuration: configuration)
+        
+        // Create an NSURL Session Data Task
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                println("Error!")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    var error : NSError?
+                    
+                    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+                    let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    
+                    switch httpResponse.statusCode {
+                    case 200...299:
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            var users = [Users]()
+                            
+                            let userObjects = Users.parseJSONDataIntoUsers(data)
+                            users = userObjects!
+                            completionHandler(errorDescription: nil, users: users)
+                        })
+                    case 400...499:
+                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", users: nil)
+                    case 500...599:
+                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", users: nil)
+                    default:
+                        completionHandler(errorDescription: "Bad Response: \(responseString)", users: nil)
+                    }
+                }
+            }
+        })
+        
+        // Run the task
+        dataTask.resume()
+    }
+
+    func fetchUserProfile(completionHandler: (errorDescription: String?, user: Users?) -> (Void)) {
+        // Checks to see if authenticated
+        if self.authenticationConfig == nil {
+            return()
+        }
+        
+        let searchDirectory = "/user"
+        let searchURL = self.gitHubAPI + searchDirectory
+        let request = NSURLRequest(URL: NSURL(string: searchURL)!)
+        
+        // Create session using authentication config
+        let configuration = self.authenticationConfig!
+        let session = NSURLSession(configuration: configuration)
+        
+        // Create an NSURL Session Data Task
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                println("Error!")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    var error : NSError?
+                    
+                    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+                    let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    
+                    switch httpResponse.statusCode {
+                    case 200...299:
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            var user : Users
+                            
+                            let userObject = Users.parseJSONDataIntoAuthenticatedUser(data)
+                            user = userObject!
+                            completionHandler(errorDescription: nil, user: user)
+                        })
+                    case 400...499:
+                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", user: nil)
+                    case 500...599:
+                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", user: nil)
+                    default:
+                        completionHandler(errorDescription: "Bad Response: \(responseString)", user: nil)
+                    }
+                }
+            }
+        })
+        
+        // Run the task
+        dataTask.resume()
+    }
+    
+    func updateUserProfile(completionHandler: (errorDescription: String?, user: Users?) -> (Void)) {
+        // Checks to see if authenticated
+        if self.authenticationConfig == nil {
+            return()
+        }
+      
+        let searchDirectory = "/user"
+        let searchURL = "https://api.github.com" + searchDirectory
+        var request = NSMutableURLRequest(URL: NSURL(string: searchURL)!)
+        request.HTTPMethod = "PATCH"
+////////////        
+////////////        /*
+////////////        https://developer.github.com/v3/users/
+////////////            {
+////////////                "name": "monalisa octocat",
+////////////                "email": "octocat@github.com",
+////////////                "blog": "https://github.com/blog",
+////////////                "company": "GitHub",
+////////////                "location": "San Francisco",
+////////////                "hireable": true,
+////////////                "bio": "There once..."
+////////////            }
+////////////        */
+////////////        
+////////////        // Create session using authentication config
+////////////        let configuration = self.authenticationConfig!
+////////////        let session = NSURLSession(configuration: configuration)
+////////////        
+////////////        // Create an NSURL Session Data Task
+////////////        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+////////////            if error != nil {
+////////////                println("Error!")
+////////////            } else {
+////////////                if let httpResponse = response as? NSHTTPURLResponse {
+////////////                    var error : NSError?
+////////////                    
+////////////                    let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+////////////                    let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+////////////                    
+////////////                    switch httpResponse.statusCode {
+////////////                    case 200...299:
+////////////                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+////////////                            var user : Users
+////////////                            
+////////////                            let userObject = Users.parseJSONDataIntoAuthenticatedUser(data)
+////////////                            user = userObject!
+////////////                            completionHandler(errorDescription: nil, user: user)
+////////////                        })
+////////////                    case 400...499:
+////////////                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Client error.", user: nil)
+////////////                    case 500...599:
+////////////                        completionHandler(errorDescription: "Status Code: \(httpResponse.statusCode). Server error.", user: nil)
+////////////                    default:
+////////////                        completionHandler(errorDescription: "Bad Response: \(responseString)", user: nil)
+////////////                    }
+////////////                }
+////////////            }
+////////////        })
+////////////        
+////////////        // Run the task
+////////////        dataTask.resume()
+    }
+////////////    
+////////////    // Create a repo: https://developer.github.com/v3/repos/#create
+////////////    
     // MARK: - Helper Methods
     
     // Helper method for returning access_token value from query string. (Source: Andy)
@@ -356,21 +356,20 @@ class GitHubService {
         self.authenticationConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         self.authenticationConfig?.HTTPAdditionalHeaders = ["Authorization" : "token \(token)"]
     }
-//
-//    // NSOperations - Asynchronous download of user images
-//    func downloadUserImage(user: Users, completionHandler : (image : UIImage) -> (Void)) {
-//        var downloadOperation = NSBlockOperation { () -> Void in
-//            let avatarURL = NSURL(string: user.avatarURL)
-//            let avatarData = NSData(contentsOfURL: avatarURL!) // Network Call
-//            let avatarImage = UIImage(data: avatarData!) // Most intensive, converting data to image
-//            //user.avatarImage = avatarImage
-//            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                completionHandler(image: avatarImage!) // completionHandler is the image, which will be sent to TableView (i.e cell.avatarImageView.image = avatarImage)
-//                // self.imageActivity.stopAnimating()
-//            })
-//        }
-//        // downloadOperation.qualityOfService = NSQualityOfService.Background
-//        NSOperationQueue().addOperation(downloadOperation)
-//    }
+
+    // NSOperations - asynchronous download of user images
+    func downloadUserImage(user: Users, completionHandler : (image : UIImage) -> (Void)) {
+        var downloadOperation = NSBlockOperation { () -> Void in
+            let avatarURL = NSURL(string: user.avatarURL)
+            let avatarData = NSData(contentsOfURL: avatarURL!)
+            let avatarImage = UIImage(data: avatarData!)
+            user.avatarImage = avatarImage
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(image: avatarImage!)
+            })
+        }
+        
+        NSOperationQueue().addOperation(downloadOperation)
+    }
 
 }
