@@ -22,12 +22,12 @@
 		0A57E9CA19F5B61100A5C76B /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E9C919F5B61100A5C76B /* RepositoryViewController.swift */; };
 		0A57E9CC19F5B8A200A5C76B /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A57E9CB19F5B8A200A5C76B /* GitHubService.swift */; };
 		0A6778AB19F6F352008708B2 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6778AA19F6F352008708B2 /* Repositories.swift */; };
-		0AA14C4519FAC50B00F6C685 /* ShowImageAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA14C4419FAC50B00F6C685 /* ShowImageAnimator.swift */; };
 		0AA14C4719FB548B00F6C685 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA14C4619FB548B00F6C685 /* ProfileViewController.swift */; };
 		0AA14C4919FB55C700F6C685 /* ShowUserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA14C4819FB55C700F6C685 /* ShowUserAnimator.swift */; };
 		0AA14C4D19FB560200F6C685 /* HideUserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA14C4C19FB560200F6C685 /* HideUserAnimator.swift */; };
 		0AC34C1F19FAB221001BC21B /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC34C1E19FAB221001BC21B /* UserDetailViewController.swift */; };
 		0AD00EAD19F9C9BF00670D6B /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD00EAC19F9C9BF00670D6B /* StringExtensions.swift */; };
+		0AE31A3F19FCBFFE00F24962 /* RepositoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE31A3E19FCBFFE00F24962 /* RepositoryWebViewController.swift */; };
 		0AEB543219F99A0A002D5FAE /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB543119F99A0A002D5FAE /* UserViewController.swift */; };
 		0AEB543419F99D45002D5FAE /* UserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB543319F99D45002D5FAE /* UserHeaderView.swift */; };
 		0AEB543619F99D7D002D5FAE /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB543519F99D7D002D5FAE /* UserCollectionViewCell.swift */; };
@@ -64,12 +64,12 @@
 		0A57E9C919F5B61100A5C76B /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 		0A57E9CB19F5B8A200A5C76B /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		0A6778AA19F6F352008708B2 /* Repositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
-		0AA14C4419FAC50B00F6C685 /* ShowImageAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageAnimator.swift; sourceTree = "<group>"; };
 		0AA14C4619FB548B00F6C685 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0AA14C4819FB55C700F6C685 /* ShowUserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowUserAnimator.swift; sourceTree = "<group>"; };
 		0AA14C4C19FB560200F6C685 /* HideUserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideUserAnimator.swift; sourceTree = "<group>"; };
 		0AC34C1E19FAB221001BC21B /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		0AD00EAC19F9C9BF00670D6B /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		0AE31A3E19FCBFFE00F24962 /* RepositoryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryWebViewController.swift; sourceTree = "<group>"; };
 		0AEB543119F99A0A002D5FAE /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		0AEB543319F99D45002D5FAE /* UserHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHeaderView.swift; sourceTree = "<group>"; };
 		0AEB543519F99D7D002D5FAE /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -121,7 +121,6 @@
 				0A57E9C219F5AEF100A5C76B /* Controller */,
 				0A57E9A719F5AED100A5C76B /* Images.xcassets */,
 				0A57E99F19F5AED100A5C76B /* GitHubMobile.xcdatamodeld */,
-				0AD00EAC19F9C9BF00670D6B /* StringExtensions.swift */,
 				0A1D032D19F7189900DBFC93 /* Tokens.swift */,
 				0A57E99B19F5AED000A5C76B /* Supporting Files */,
 			);
@@ -160,6 +159,7 @@
 				0A22BBB519F9C120002E34F3 /* Users.swift */,
 				0AA14C4C19FB560200F6C685 /* HideUserAnimator.swift */,
 				0AA14C4819FB55C700F6C685 /* ShowUserAnimator.swift */,
+				0AD00EAC19F9C9BF00670D6B /* StringExtensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -171,7 +171,6 @@
 				0A57E9A919F5AED100A5C76B /* LaunchScreen.xib */,
 				0A22BBB119F9A350002E34F3 /* RepoTableViewCell.xib */,
 				0AEB543719F99D9B002D5FAE /* RepoTableViewCell.swift */,
-				0AA14C4419FAC50B00F6C685 /* ShowImageAnimator.swift */,
 				0A22BBB319F9A5F9002E34F3 /* UserCollectionViewCell.xib */,
 				0AEB543519F99D7D002D5FAE /* UserCollectionViewCell.swift */,
 				0AEB543319F99D45002D5FAE /* UserHeaderView.swift */,
@@ -186,6 +185,7 @@
 				0A1D032919F70B5500DBFC93 /* MasterTableViewController.swift */,
 				0AA14C4619FB548B00F6C685 /* ProfileViewController.swift */,
 				0A57E9C919F5B61100A5C76B /* RepositoryViewController.swift */,
+				0AE31A3E19FCBFFE00F24962 /* RepositoryWebViewController.swift */,
 				0A57E9C719F5B09C00A5C76B /* SplitContainerViewController.swift */,
 				0AC34C1E19FAB221001BC21B /* UserDetailViewController.swift */,
 				0AEB543119F99A0A002D5FAE /* UserViewController.swift */,
@@ -297,7 +297,6 @@
 			files = (
 				0AEB543219F99A0A002D5FAE /* UserViewController.swift in Sources */,
 				0AA14C4D19FB560200F6C685 /* HideUserAnimator.swift in Sources */,
-				0AA14C4519FAC50B00F6C685 /* ShowImageAnimator.swift in Sources */,
 				0A57E9A119F5AED100A5C76B /* GitHubMobile.xcdatamodeld in Sources */,
 				0A57E99E19F5AED000A5C76B /* AppDelegate.swift in Sources */,
 				0A57E9C819F5B09C00A5C76B /* SplitContainerViewController.swift in Sources */,
@@ -312,6 +311,7 @@
 				0AC34C1F19FAB221001BC21B /* UserDetailViewController.swift in Sources */,
 				0AA14C4919FB55C700F6C685 /* ShowUserAnimator.swift in Sources */,
 				0AD00EAD19F9C9BF00670D6B /* StringExtensions.swift in Sources */,
+				0AE31A3F19FCBFFE00F24962 /* RepositoryWebViewController.swift in Sources */,
 				0AEB543819F99D9B002D5FAE /* RepoTableViewCell.swift in Sources */,
 				0A1D032E19F7189900DBFC93 /* Tokens.swift in Sources */,
 			);

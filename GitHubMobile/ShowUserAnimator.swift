@@ -16,11 +16,10 @@ class ShowUserAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         return duration
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) /*-> NSTimeInterval */{
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         // References for origin and destination view controllers
         let originViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as UserViewController
         let destinationViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UserDetailViewController
-// check destination VC
         
         // Container view from context
         let containerView = transitionContext.containerView()
@@ -39,14 +38,12 @@ class ShowUserAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             
             snapshot.frame = originRect
             
-            // Hide the destination view controller
+            // Hide when transitioning...
             destinationViewController.view.alpha = 0.0
+            cell.alpha = 0.0
             
             containerView.addSubview(snapshot)
             containerView.addSubview(destinationViewController.view)
-            
-            // Hide the cell when transitioning
-            cell.alpha = 0.0
             
             UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: nil, animations: { () -> Void in
                 UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.3, animations: { () -> Void in
@@ -65,4 +62,5 @@ class ShowUserAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             })
         }
     }
+    
 }

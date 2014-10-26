@@ -18,14 +18,10 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupVC()
         
-        
-        // 8. Registering Table View Cell Nib file
-        self.tableView.registerNib(UINib(nibName: "RepoTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "REPO_CELL")
-        
-        // 9. Dynamic Cell Height
-        self.tableView.estimatedRowHeight = 100.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelegate.networkController
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +42,6 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL", forIndexPath: indexPath) as RepoTableViewCell
         
         let repo = self.repos?[indexPath.row]
-        
         cell.fullNameLabel.text = repo?.fullName
         cell.descriptionLabel.text = repo?.description
         cell.languageLabel.text = repo?.language
@@ -55,6 +50,17 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: - Table View Delegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let repo = self.repos?[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("REPO_WEBVIEW") as RepositoryWebViewController
+        
+        viewController.repoURL = repo?.htmlURL
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     // MARK: - Search Bar Delegate
     // 11
@@ -65,20 +71,28 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         var searchText = searchBar.text
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        self.networkController = appDelegate.networkController
         
         self.networkController.repoSearch(searchText, completionHandler: { (errorDescription, repos) -> (Void) in
             if errorDescription != nil {
-                // Alert the user that something went wrong here or log errors.
-                println("Bad")
+                println("Bad!")
             } else {
                 self.repos = repos
-                println(self.repos!.count)
+                println("Results: \(self.repos!.count)")
                 self.tableView.reloadData()
             }
         })
 
+    }
+    
+    // MARK: - viewDidLoad
+    
+    func setupVC() {
+        // 8. Registering Table View Cell Nib file
+        self.tableView.registerNib(UINib(nibName: "RepoTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "REPO_CELL")
+        
+        // 9. Dynamic Cell Height
+        self.tableView.estimatedRowHeight = 100.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
 }

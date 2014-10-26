@@ -10,6 +10,6 @@ import UIKit
 
 class UserHeaderView: UICollectionReusableView, UISearchBarDelegate {
 
-    
     @IBOutlet weak var searchBar: UISearchBar!
+    
 }

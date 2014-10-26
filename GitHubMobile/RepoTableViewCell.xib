@@ -13,33 +13,34 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hlP-TR-5YP" id="VMF-li-1OR">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FullNameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9J-M6-eTw">
-                        <rect key="frame" x="8" y="26" width="115" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="FullNameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9J-M6-eTw">
+                        <rect key="frame" x="8" y="23" width="121" height="31"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DescriptionLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DD-mq-aJl">
-                        <rect key="frame" x="8" y="55" width="130" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="8" y="59" width="380" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LanguageLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTd-Ah-ZBW">
-                        <rect key="frame" x="360" y="26" width="118" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LanguageLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTd-Ah-ZBW">
+                        <rect key="frame" x="385" y="26" width="93" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qTd-Ah-ZBW" firstAttribute="top" secondItem="VMF-li-1OR" secondAttribute="topMargin" constant="18" id="3FE-Ye-R8b"/>
-                    <constraint firstItem="V9J-M6-eTw" firstAttribute="top" secondItem="VMF-li-1OR" secondAttribute="topMargin" constant="18" id="8DK-3A-zJ9"/>
+                    <constraint firstItem="V9J-M6-eTw" firstAttribute="top" secondItem="VMF-li-1OR" secondAttribute="topMargin" constant="15" id="8DK-3A-zJ9"/>
                     <constraint firstItem="1DD-mq-aJl" firstAttribute="leading" secondItem="VMF-li-1OR" secondAttribute="leadingMargin" id="9Zh-QH-8VQ"/>
                     <constraint firstItem="qTd-Ah-ZBW" firstAttribute="trailing" secondItem="VMF-li-1OR" secondAttribute="trailingMargin" id="CbX-3e-a3x"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="1DD-mq-aJl" secondAttribute="bottom" constant="31" id="RIr-E2-jss"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="1DD-mq-aJl" secondAttribute="bottom" constant="30" id="RIr-E2-jss"/>
                     <constraint firstItem="V9J-M6-eTw" firstAttribute="leading" secondItem="VMF-li-1OR" secondAttribute="leadingMargin" id="hcz-Mm-Jgx"/>
-                    <constraint firstItem="1DD-mq-aJl" firstAttribute="top" secondItem="V9J-M6-eTw" secondAttribute="bottom" constant="8" id="nyY-74-ccU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1DD-mq-aJl" secondAttribute="trailing" constant="90" id="k1Q-lS-7tA"/>
+                    <constraint firstItem="1DD-mq-aJl" firstAttribute="top" secondItem="V9J-M6-eTw" secondAttribute="bottom" constant="5" id="nyY-74-ccU"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -47,7 +48,7 @@
                 <outlet property="fullNameLabel" destination="V9J-M6-eTw" id="fTe-OS-rer"/>
                 <outlet property="languageLabel" destination="qTd-Ah-ZBW" id="DFW-uG-WVv"/>
             </connections>
-            <point key="canvasLocation" x="393" y="342"/>
+            <point key="canvasLocation" x="393" y="340"/>
         </tableViewCell>
     </objects>
 </document>

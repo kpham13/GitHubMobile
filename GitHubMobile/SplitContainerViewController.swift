@@ -17,7 +17,6 @@ class SplitContainerViewController: UIViewController, UISplitViewControllerDeleg
         // 2
         let splitVC = self.childViewControllers[0] as UISplitViewController
         splitVC.delegate = self
-
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cXL-ux-Uj8">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -9,7 +8,7 @@
         <!--Repository View Controller-->
         <scene sceneID="ItT-vm-wvW">
             <objects>
-                <viewController title="Repository View Controller" id="lhj-DB-CRf" customClass="RepositoryViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="REPO_VIEW" title="Repository View Controller" id="lhj-DB-CRf" customClass="RepositoryViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Luk-fB-lwB"/>
                         <viewControllerLayoutGuide type="bottom" id="N3D-74-L6l"/>
@@ -68,17 +67,17 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0He-eK-SJn" id="cc8-51-kbK">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fly-Je-99g">
-                                                    <rect key="frame" x="8" y="11" width="50" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repositories" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fly-Je-99g">
+                                                    <rect key="frame" x="8" y="11" width="103" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="fly-Je-99g" firstAttribute="leading" secondItem="cc8-51-kbK" secondAttribute="leadingMargin" id="K7l-5X-yXZ"/>
                                                 <constraint firstItem="fly-Je-99g" firstAttribute="top" secondItem="cc8-51-kbK" secondAttribute="topMargin" constant="3" id="bnO-kU-4ti"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fly-Je-99g" secondAttribute="bottom" constant="3" id="eUG-eg-rRS"/>
-                                                <constraint firstItem="fly-Je-99g" firstAttribute="leading" secondItem="cc8-51-kbK" secondAttribute="leadingMargin" id="f4n-Mq-I8F"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -91,16 +90,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shT-lJ-The">
-                                                    <rect key="frame" x="8" y="11" width="45" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="8" y="11" width="48" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="shT-lJ-The" firstAttribute="leading" secondItem="svI-Ib-t4O" secondAttribute="leadingMargin" id="1jb-Ws-nMY"/>
                                                 <constraint firstItem="shT-lJ-The" firstAttribute="top" secondItem="svI-Ib-t4O" secondAttribute="topMargin" constant="3" id="LZQ-XS-Ffa"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="shT-lJ-The" secondAttribute="bottom" constant="3" id="gZ2-Qf-XCz"/>
-                                                <constraint firstItem="shT-lJ-The" firstAttribute="leading" secondItem="svI-Ib-t4O" secondAttribute="leadingMargin" id="rfC-XV-aQN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -113,8 +112,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irO-qA-eVM">
-                                                    <rect key="frame" x="8" y="11" width="49" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="8" y="11" width="53" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -143,10 +142,28 @@
             </objects>
             <point key="canvasLocation" x="1929" y="-922"/>
         </scene>
+        <!--Repository Web View Controller-->
+        <scene sceneID="2N7-tg-q8B">
+            <objects>
+                <viewController storyboardIdentifier="REPO_WEBVIEW" title="Repository Web View Controller" id="dzg-0q-By0" customClass="RepositoryWebViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bBT-Mk-Ev5"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Qm-ba-Gaw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dPp-Go-G7e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vno-8z-E7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="-176"/>
+        </scene>
         <!--User View Controller-->
         <scene sceneID="ESl-M5-wzZ">
             <objects>
-                <viewController title="User View Controller" id="tWI-YU-HiS" customClass="UserViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="USER_VIEW" title="User View Controller" id="tWI-YU-HiS" customClass="UserViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ih0-UT-9Ht"/>
                         <viewControllerLayoutGuide type="bottom" id="qf6-cb-v5R"/>
@@ -157,8 +174,8 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NoI-8E-VEz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tyl-Xh-SMv">
-                                    <size key="itemSize" width="156" height="160"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="tyl-Xh-SMv">
+                                    <size key="itemSize" width="123" height="123"/>
                                     <size key="headerReferenceSize" width="50" height="44"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -220,7 +237,7 @@
         <!--Profile View Controller-->
         <scene sceneID="a3M-CM-dSJ">
             <objects>
-                <viewController title="Profile View Controller" id="bT9-EJ-e8J" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PROFILE_VIEW" title="Profile View Controller" id="bT9-EJ-e8J" customClass="ProfileViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1qx-Gg-F7O"/>
                         <viewControllerLayoutGuide type="bottom" id="Dp7-gw-m9U"/>
@@ -259,7 +276,7 @@
         <!--User Detail View Controller-->
         <scene sceneID="yNB-Lz-dtU">
             <objects>
-                <viewController storyboardIdentifier="USER_DETAIL" title="User Detail View Controller" id="Zm6-Gd-dSg" customClass="UserDetailViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="USER_DETAIL_VIEW" title="User Detail View Controller" id="Zm6-Gd-dSg" customClass="UserDetailViewController" customModule="GitHubMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P9f-zs-Wml"/>
                         <viewControllerLayoutGuide type="bottom" id="zrc-je-Jtq"/>
@@ -268,25 +285,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LoginLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7I0-ms-PTZ">
+                                <rect key="frame" x="258" y="280" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bQv-0m-OYS">
-                                <rect key="frame" x="200" y="110" width="200" height="200"/>
+                                <rect key="frame" x="16" y="72" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="5kn-eQ-hdl"/>
                                     <constraint firstAttribute="width" constant="200" id="AQj-o8-Rxa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LoginLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7I0-ms-PTZ">
-                                <rect key="frame" x="258" y="318" width="85" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="bQv-0m-OYS" secondAttribute="centerX" id="K5s-M4-MiP"/>
+                            <constraint firstItem="bQv-0m-OYS" firstAttribute="leading" secondItem="9kx-ld-Bjc" secondAttribute="leadingMargin" id="6Fn-1D-Sva"/>
+                            <constraint firstItem="bQv-0m-OYS" firstAttribute="top" secondItem="P9f-zs-Wml" secondAttribute="bottom" constant="8" id="b6t-dA-MmG"/>
                             <constraint firstAttribute="centerX" secondItem="7I0-ms-PTZ" secondAttribute="centerX" id="g2P-DR-elQ"/>
-                            <constraint firstItem="bQv-0m-OYS" firstAttribute="top" secondItem="P9f-zs-Wml" secondAttribute="bottom" constant="46" id="kdf-6c-Aw5"/>
                             <constraint firstItem="7I0-ms-PTZ" firstAttribute="top" secondItem="bQv-0m-OYS" secondAttribute="bottom" constant="8" id="scl-p4-F4t"/>
                         </constraints>
                     </view>
@@ -362,6 +379,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="skD-ii-Mk7"/>
+        <segue reference="3UA-Zy-uGa"/>
     </inferredMetricsTieBreakers>
 </document>

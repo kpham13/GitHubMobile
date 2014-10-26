@@ -20,14 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         return true
     }
     
+    // MARK: - GitHub OAuth
+
     // 5b. Pass back url provided by GitHub to network controller. URL contains request token.
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         self.networkController.handleOAuthURL(url)
         return true
     }
-    
+
     // MARK: - Navigation Controller Delegate
-    
+   
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let userViewController = fromVC as? UserViewController {
             if let userDetailViewController = toVC as? UserDetailViewController {
@@ -40,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                 return animator
             }
         }
-        
+       
         return nil
     }
 

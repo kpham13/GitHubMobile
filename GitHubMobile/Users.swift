@@ -34,10 +34,23 @@ class Users {
             }
             
             return users
-            
         }
         
         return nil
     }
     
+    class func parseJSONDataIntoAuthenticatedUser(rawJSONData: NSData) -> Users? {
+        var error : NSError?
+        
+        if let JSONDictionary = NSJSONSerialization.JSONObjectWithData(rawJSONData, options: nil, error: &error) as? NSDictionary {
+            var user : Users
+            
+            var profileUser = Users(userInfo: JSONDictionary)
+            user = profileUser
+            
+            return user
+        }
+        
+        return nil
+    }
 }

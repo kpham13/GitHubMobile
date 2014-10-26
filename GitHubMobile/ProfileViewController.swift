@@ -10,10 +10,19 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    var networkController : GitHubService!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.networkController = appDelegate.networkController
+        
+//        self.networkController.fetchUserProfile( { (errorDescription, user) -> (Void) in
+//            println(user?.login)
+//        })
     }
 
     override func didReceiveMemoryWarning() {
