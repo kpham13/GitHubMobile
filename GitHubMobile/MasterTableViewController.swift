@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterTableViewController: UITableViewController {
+class MasterTableViewController: UITableViewController, UINavigationControllerDelegate {
 
     var clientID : String?
     var clientSecret : String?
@@ -18,12 +18,37 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupVC()
-                
+        
+        
+//        UINavigationControllerDelegate
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        /*
+        // MARK: - UINavigationControllerDelegate
+        func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+            if let usersViewController = fromVC as? UsersViewController {
+                if let userViewController = toVC as? UserViewController {
+                    // Return a custom animator when showing the user view controller
+                    // and when moving from the users view controller
+                    // (i.e) Only when moving from list of avatars to detail view of single avatar (user)
+                    let animator = ShowUserAnimator()
+                    return animator
+                }
+            }
+            else if let userViewController = fromVC as? UserViewController {
+                if let usersViewController = toVC as? UsersViewController {
+                    let animator = HideUserAnimator()
+                    return animator
+                }
+            }
+            // Navigation between all other types of View Controllers use default transition
+            return nil
+        }
+        */
     }
     
     override func viewDidAppear(animated: Bool) {

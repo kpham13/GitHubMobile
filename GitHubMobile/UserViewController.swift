@@ -84,10 +84,10 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         let attributes = collectionView.layoutAttributesForItemAtIndexPath(indexPath)
         
         // Grab the onscreen rectangle of the tapped cell
-        let origin = self.view.convertRect(attributes!.frame, fromView: collectionView)
+        //let origin = self.view.convertRect(attributes!.frame, fromView: collectionView)
         
         // Save our starting location as the tapped upon cells frame
-        self.origin = origin
+        //self.origin = origin
         
         // Find tapped image, initialize next view controller
         let user = self.users?[indexPath.row]
@@ -95,7 +95,7 @@ class UserViewController: UIViewController, UICollectionViewDataSource, UICollec
         let viewController = storyboard.instantiateViewControllerWithIdentifier("USER_DETAIL") as UserDetailViewController
         
         //viewControlller.image = image
-        viewController.reverseOrigin = self.origin!
+        //viewController.reverseOrigin = self.origin!
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }

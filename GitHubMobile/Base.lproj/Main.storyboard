@@ -291,6 +291,9 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageView" destination="bQv-0m-OYS" id="GOn-XC-dWp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIy-jC-fLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

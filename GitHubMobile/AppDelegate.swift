@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
 
     var window: UIWindow?
     let networkController = GitHubService()
@@ -24,6 +24,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         self.networkController.handleOAuthURL(url)
         return true
+    }
+    
+    // MARK: - Navigation Controller Delegate
+    
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let userViewController = fromVC as? UserViewController {
+            if let userDetailViewController = toVC as? UserDetailViewController {
+                let animator = ShowUserAnimator()
+                return animator
+            }
+        } else if let userDetailViewController = fromVC as? UserDetailViewController {
+            if let userViewController = toVC as? UserViewController {
+                let animator = HideUserAnimator()
+                return animator
+            }
+        }
+        
+        return nil
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -13,6 +13,8 @@ class UserDetailViewController: UIViewController {
     var reverseOrigin : CGRect?
     var userImage : UIImage?
     
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
