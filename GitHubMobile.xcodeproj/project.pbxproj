@@ -115,10 +115,10 @@
 		0A57E99A19F5AED000A5C76B /* GitHubMobile */ = {
 			isa = PBXGroup;
 			children = (
-				0A57E99D19F5AED000A5C76B /* AppDelegate.swift */,
 				0A57E9C019F5AEE200A5C76B /* Model */,
 				0A57E9C119F5AEE800A5C76B /* View */,
 				0A57E9C219F5AEF100A5C76B /* Controller */,
+				0A57E99D19F5AED000A5C76B /* AppDelegate.swift */,
 				0A57E9A719F5AED100A5C76B /* Images.xcassets */,
 				0A57E99F19F5AED100A5C76B /* GitHubMobile.xcdatamodeld */,
 				0A1D032D19F7189900DBFC93 /* Tokens.swift */,

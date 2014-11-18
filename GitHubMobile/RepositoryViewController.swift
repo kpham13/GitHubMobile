@@ -22,6 +22,8 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.networkController = appDelegate.networkController
+        
+        //tableView.datasource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,11 +56,11 @@ class RepositoryViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let repo = self.repos?[indexPath.row]
+        let repo = self.repos![indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewControllerWithIdentifier("REPO_WEBVIEW") as RepositoryWebViewController
         
-        viewController.repoURL = repo?.htmlURL
+        viewController.repoURL = repo.htmlURL
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

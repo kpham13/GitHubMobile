@@ -8,13 +8,11 @@
 
 import UIKit
 
-// 1
 class SplitContainerViewController: UIViewController, UISplitViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 2
         let splitVC = self.childViewControllers[0] as UISplitViewController
         splitVC.delegate = self
     }
@@ -23,7 +21,6 @@ class SplitContainerViewController: UIViewController, UISplitViewControllerDeleg
         super.didReceiveMemoryWarning()
     }
     
-    // 3
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
         return true
     }

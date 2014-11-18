@@ -10,7 +10,6 @@ import UIKit
 
 class GitHubService {
     
-    //let clientID : AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("client_id")
     var clientID : String?
     var clientIDParameter : String?
     var clientSecret : String?
@@ -116,8 +115,7 @@ class GitHubService {
         dataTask.resume()
     }
     
-    // MARK: - Authenticated API Requests
-    // 10
+    // MARK: - AUTHENTICATED API REQUESTS
     
     func repoSearch(searchText: String, completionHandler: (errorDescription: String?, repos: [Repositories]?) -> (Void)) {
         // Checks to see if authenticated

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterTableViewController: UITableViewController {
+class MasterTableViewController: UITableViewController, UITableViewDelegate {
 
     var clientID : String?
     var clientSecret : String?
@@ -38,13 +38,21 @@ class MasterTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - viewDidLoad
+    // MARK: - TABLE VIEW DELEGATE
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return self.view.frame.size.height * 0.3
+    }
+    
+    // MARK: - VIEW DID LOAD
     
     func setupVC() {
         let tokens = Tokens()
 
         self.clientID = tokens.clientID
         self.clientSecret = tokens.clientSecret
+        
+        self.title = "GitHub"
     }
 
 }
